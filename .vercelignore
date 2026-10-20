@@ -1,0 +1,8 @@
+backups
+.vscode
+.git
+qa
+qa-check.cjs
+preview.cjs
+QA.md
+verify.cjs

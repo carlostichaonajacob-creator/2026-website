@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CJJacob Process - Premium Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --off-white: #F7F7F5;
+      --pure-black: #0a0a0a;
+      --signature-blue: #0041A8;
+      --hover-blue: #0052D6;
+      --dark-grey: #2B2B2B;
+      --mouse-x: 50%;
+      --mouse-y: 50%;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--dark-grey);
+      background: var(--off-white);
+      overflow-x: hidden;
+      transition: background-color 0.55s, color 0.55s;
+      position: relative;
+    }
+
+    /* Mouse-follow gradient effect */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle 300px at var(--mouse-x) var(--mouse-y), rgba(0, 65, 168, 0.08), transparent);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Animated Background Pattern */
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 65, 168, 0.1), transparent);
+      animation: float 30s ease-in-out infinite;
+    }
+
+    .shape-1 {
+      width: 400px;
+      height: 400px;
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .shape-2 {
+      width: 300px;
+      height: 300px;
+      bottom: 15%;
+      right: 10%;
+      animation-delay: 5s;
+    }
+
+    .shape-3 {
+      width: 250px;
+      height: 250px;
+      top: 50%;
+      right: 5%;
+      animation-delay: 10s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      33% {
+        transform: translate(30px, -30px) scale(1.1);
+      }
+      66% {
+        transform: translate(-30px, 30px) scale(0.9);
+      }
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      transition: color 0.4s;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 96px);
+      max-width: 1300px;
+      height: 80px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      padding: 0 28px;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.08em;
+      color: var(--pure-black);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 15px;
+      color: var(--dark-grey);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.3s, color 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--signature-blue);
+    }
+
+    /* Main Container */
+    .process-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 140px 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .section-title h2 {
+      font-size: 56px;
+      text-transform: uppercase;
+      color: var(--pure-black);
+      margin-bottom: 16px;
+    }
+
+    .section-title p {
+      font-size: 18px;
+      color: var(--dark-grey);
+      opacity: 0.7;
+    }
+
+    /* Cards Viewport */
+    .cards-viewport {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      perspective: 2000px;
+    }
+
+    .cards-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .card {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-style: preserve-3d;
+      cursor: grab;
+    }
+
+    .card:active {
+      cursor: grabbing;
+    }
+
+    /* Card States with 3D transforms */
+    .card.active {
+      transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
+      opacity: 1;
+      z-index: 10;
+      pointer-events: auto;
+    }
+
+    .card.next {
+      transform: translateX(75%) translateZ(-300px) rotateY(-20deg) scale(0.85);
+      opacity: 0.5;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .card.prev {
+      transform: translateX(-75%) translateZ(-300px) rotateY(20deg) scale(0.85);
+      opacity: 0.5;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .card.far-next {
+      transform: translateX(110%) translateZ(-500px) rotateY(-30deg) scale(0.7);
+      opacity: 0.3;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .card.far-prev {
+      transform: translateX(-110%) translateZ(-500px) rotateY(30deg) scale(0.7);
+      opacity: 0.3;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .card.hidden {
+      transform: translateX(150%) translateZ(-700px) scale(0.5);
+      opacity: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Card Inner - Glassmorphism */
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(247, 247, 245, 0.4);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .card.active .card-inner {
+      transform: translateY(var(--hover-y, 0));
+    }
+
+    .card.active:hover .card-inner {
+      --hover-y: -8px;
+      box-shadow: 
+        0 30px 70px rgba(0, 65, 168, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      border-color: rgba(0, 65, 168, 0.3);
+    }
+
+    /* Gradient overlays */
+    .gradient-accent {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      z-index: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .card.active:hover .gradient-accent {
+      opacity: 0.08;
+    }
+
+    .card-1 .gradient-accent { 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+    }
+    .card-2 .gradient-accent { 
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); 
+    }
+    .card-3 .gradient-accent { 
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); 
+    }
+    .card-4 .gradient-accent { 
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); 
+    }
+    .card-5 .gradient-accent { 
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); 
+    }
+
+    /* Card Content */
+    .card-content {
+      position: relative;
+      z-index: 1;
+      padding: 60px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 20px;
+      border-radius: 10px;
+      background: rgba(0, 65, 168, 0.08);
+      border: 1px solid rgba(0, 65, 168, 0.2);
+      width: fit-content;
+      margin-bottom: 24px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--signature-blue);
+      transition: all 0.3s ease;
+    }
+
+    .card.active:hover .step-badge {
+      background: rgba(0, 65, 168, 0.12);
+      border-color: rgba(0, 65, 168, 0.3);
+      transform: translateX(4px);
+    }
+
+    .step-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      color: var(--signature-blue);
+    }
+
+    .card-title {
+      font-size: 48px;
+      font-family: 'Bebas Neue', sans-serif;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+      color: var(--pure-black);
+      transition: all 0.4s ease;
+    }
+
+    .card.active:hover .card-title {
+      color: var(--signature-blue);
+      transform: translateX(4px);
+    }
+
+    .card-description {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--dark-grey);
+      max-width: 600px;
+      font-weight: 400;
+      transition: all 0.3s ease;
+    }
+
+    .card.active:hover .card-description {
+      transform: translateX(4px);
+    }
+
+    /* Decorative blur elements */
+    .card-decoration {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .card.active .card-decoration {
+      opacity: 0.15;
+    }
+
+    .card.active:hover .card-decoration {
+      opacity: 0.25;
+    }
+
+    .decoration-1 {
+      width: 300px;
+      height: 300px;
+      top: -100px;
+      right: -100px;
+    }
+
+    .decoration-2 {
+      width: 250px;
+      height: 250px;
+      bottom: -80px;
+      left: -80px;
+    }
+
+    .card-1 .decoration-1 { background: radial-gradient(circle, #667eea, transparent); }
+    .card-1 .decoration-2 { background: radial-gradient(circle, #764ba2, transparent); }
+    .card-2 .decoration-1 { background: radial-gradient(circle, #f093fb, transparent); }
+    .card-2 .decoration-2 { background: radial-gradient(circle, #f5576c, transparent); }
+    .card-3 .decoration-1 { background: radial-gradient(circle, #4facfe, transparent); }
+    .card-3 .decoration-2 { background: radial-gradient(circle, #00f2fe, transparent); }
+    .card-4 .decoration-1 { background: radial-gradient(circle, #43e97b, transparent); }
+    .card-4 .decoration-2 { background: radial-gradient(circle, #38f9d7, transparent); }
+    .card-5 .decoration-1 { background: radial-gradient(circle, #fa709a, transparent); }
+    .card-5 .decoration-2 { background: radial-gradient(circle, #fee140, transparent); }
+
+    /* Navigation Controls */
+    .nav-controls {
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-arrow {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-arrow:hover {
+      transform: translateY(-4px);
+      background: rgba(0, 65, 168, 0.1);
+      border-color: rgba(0, 65, 168, 0.3);
+      box-shadow: 0 12px 28px rgba(0, 65, 168, 0.2);
+    }
+
+    .nav-arrow:active {
+      transform: translateY(-2px);
+    }
+
+    .nav-arrow.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .nav-arrow svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--signature-blue);
+      stroke-width: 2.5;
+      fill: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Progress Dots */
+    .progress-dots {
+      display: flex;
+      gap: 12px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(20px);
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0, 65, 168, 0.3);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      border: none;
+      padding: 0;
+    }
+
+    .dot:hover {
+      background: rgba(0, 65, 168, 0.5);
+      transform: scale(1.3);
+    }
+
+    .dot.active {
+      width: 32px;
+      border-radius: 100px;
+      background: var(--signature-blue);
+      box-shadow: 0 4px 16px rgba(0, 65, 168, 0.4);
+    }
+
+    /* Progress Bar */
+    .progress-bar-container {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .progress-bar-wrapper {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(20px);
+      border-radius: 100px;
+      padding: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .progress-bar-track {
+      height: 6px;
+      background: rgba(0, 65, 168, 0.1);
+      border-radius: 100px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--signature-blue);
+      border-radius: 100px;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 20px rgba(0, 65, 168, 0.4);
+      position: relative;
+    }
+
+    .progress-bar-fill::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      background: var(--signature-blue);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 65, 168, 0.4);
+      border: 3px solid var(--off-white);
+    }
+
+    .step-indicator {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--dark-grey);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Ripple effect */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(0, 65, 168, 0.3);
+      transform: scale(0);
+      animation: rippleEffect 0.6s ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes rippleEffect {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Keyboard Hint */
+    .keyboard-hint {
+      position: absolute;
+      bottom: -140px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 8px 20px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(20px);
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      font-size: 13px;
+      color: var(--dark-grey);
+      opacity: 0;
+      animation: fadeInOut 4s ease-in-out 2s infinite;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; }
+      10%, 90% { opacity: 0.7; }
+    }
+
+    .key {
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 6px;
+      border: 1px solid rgba(0, 65, 168, 0.2);
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--signature-blue);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .cards-viewport {
+        height: 500px;
+      }
+
+      .card-title {
+        font-size: 42px;
+      }
+
+      .card-content {
+        padding: 48px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .process-section {
+        padding: 120px 24px;
+      }
+
+      .section-title h2 {
+        font-size: 42px;
+      }
+
+      .cards-viewport {
+        height: 450px;
+      }
+
+      .card-title {
+        font-size: 36px;
+      }
+
+      .card-description {
+        font-size: 16px;
+      }
+
+      .card-content {
+        padding: 32px;
+      }
+
+      .nav-arrow {
+        width: 48px;
+        height: 48px;
+      }
+
+      .keyboard-hint {
+        display: none;
+      }
+
+      .header {
+        width: calc(100% - 48px);
+        height: 70px;
+      }
+    }
+
+    /* Loading Animation */
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-content > * {
+      animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+    }
+
+    .card.active .step-badge { animation-delay: 0.1s; }
+    .card.active .card-title { animation-delay: 0.2s; }
+    .card.active .card-description { animation-delay: 0.3s; }
+
+    /* Focus styles for accessibility */
+    .nav-arrow:focus-visible,
+    .dot:focus-visible {
+      outline: 2px solid var(--signature-blue);
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Pattern -->
+  <div class="bg-pattern">
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo">CJJACOB</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Process Section -->
+  <section class="process-section">
+    <div class="process-container">
+      <!-- Section Title -->
+      <div class="section-title">
+        <h2>How I Work</h2>
+        <p>A streamlined, collaborative process designed for clarity and results</p>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-bar-container">
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progressFill"></div>
+          </div>
+        </div>
+        <div class="step-indicator" id="stepIndicator">Step 1 of 5</div>
+      </div>
+
+      <!-- Cards Viewport -->
+      <div class="cards-viewport">
+        <div class="cards-container" id="cardsContainer"></div>
+      </div>
+
+      <!-- Navigation Controls -->
+      <div class="nav-controls">
+        <button class="nav-arrow" id="prevBtn" aria-label="Previous step">
+          <svg viewBox="0 0 24 24">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+
+        <div class="progress-dots" id="progressDots"></div>
+
+        <button class="nav-arrow" id="nextBtn" aria-label="Next step">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Keyboard Hint -->
+      <div class="keyboard-hint">
+        <span>Use</span>
+        <span class="key">←</span>
+        <span class="key">→</span>
+        <span>or swipe</span>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const steps = [
+      {
+        number: "01",
+        title: "Discovery & Research",
+        description: "We explore your vision, target audience, and competitive landscape to build a solid foundation for your project."
+      },
+      {
+        number: "02",
+        title: "Strategy & Planning",
+        description: "We develop strategy including user journey mapping and content structure to ensure optimal results."
+      },
+      {
+        number: "03",
+        title: "Design & Prototyping",
+        description: "Your brand comes to life through mockups and interactive prototypes that capture your vision perfectly."
+      },
+      {
+        number: "04",
+        title: "Development & Build",
+        description: "I hand-code your site with performance and accessibility as top priorities for long-term success."
+      },
+      {
+        number: "05",
+        title: "Launch & Optimization",
+        description: "Your site launches optimized for search engines and user experience, ready to grow your business."
+      }
+    ];
+
+    let currentStep = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    const MIN_SWIPE = 80;
+
+    // Mouse follow effect
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      document.documentElement.style.setProperty('--mouse-x', `${mouseX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${mouseY}px`);
+    }, { passive: true });
+
+    function init() {
+      renderCards();
+      renderDots();
+      setupEvents();
+      updateView();
+    }
+
+    function renderCards() {
+      const container = document.getElementById('cardsContainer');
+      
+      steps.forEach((step, index) => {
+        const card = document.createElement('div');
+        card.className = `card card-${index + 1}`;
+        card.innerHTML = `
+          <div class="card-inner">
+            <div class="gradient-accent"></div>
+            <div class="card-decoration decoration-1"></div>
+            <div class="card-decoration decoration-2"></div>
+            <div class="card-content">
+              <div class="step-badge">
+                <span class="step-number">${step.number}</span>
+                <span>Step ${step.number}</span>
+              </div>
+              <h3 class="card-title">${step.title}</h3>
+              <p class="card-description">${step.description}</p>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderDots() {
+      const container = document.getElementById('progressDots');
+      steps.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', `Go to step ${index + 1}`);
+        dot.addEventListener('click', (e) => {
+          createRipple(e, dot);
+          goToStep(index);
+        });
+        container.appendChild(dot);
+      });
+    }
+
+    function setupEvents() {
+      const container = document.getElementById('cardsContainer');
+      
+      // Touch events
+      container.addEventListener('touchstart', handleStart, { passive: true });
+      container.addEventListener('touchmove', handleMove, { passive: false });
+      container.addEventListener('touchend', handleEnd, { passive: true });
+      
+      // Mouse events
+      container.addEventListener('mousedown', handleStart);
+      container.addEventListener('mousemove', handleMove);
+      container.addEventListener('mouseup', handleEnd);
+      container.addEventListener('mouseleave', handleEnd);
+      
+      // Navigation buttons
+      document.getElementById('prevBtn').addEventListener('click', (e) => {
+        if (currentStep > 0) {
+          createRipple(e, e.currentTarget);
+          goToStep(currentStep - 1);
+        }
+      });
+      
+      document.getElementById('nextBtn').addEventListener('click', (e) => {
+        if (currentStep < steps.length - 1) {
+          createRipple(e, e.currentTarget);
+          goToStep(currentStep + 1);
+        }
+      });
+      
+      // Keyboard
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && currentStep > 0) {
+          goToStep(currentStep - 1);
+        } else if (e.key === 'ArrowRight' && currentStep < steps.length - 1) {
+          goToStep(currentStep + 1);
+        }
+      });
+    }
+
+    function handleStart(e) {
+      isDragging = true;
+      startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+      currentX = startX;
+    }
+
+    function handleMove(e) {
+      if (!isDragging) return;
+      
+      currentX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+      const diff = currentX - startX;
+      
+      // Visual feedback during drag
+      const cards = document.querySelectorAll('.card');
+      const dragProgress = Math.max(-1, Math.min(1, diff / 300));
+      
+      cards.forEach((card, index) => {
+        if (index === currentStep) {
+          const baseTransform = 'translateX(0) translateZ(0) rotateY(0deg) scale(1)';
+          card.style.transform = `translateX(${dragProgress * 100}px) scale(${1 - Math.abs(dragProgress) * 0.1})`;
+          card.style.opacity = 1 - Math.abs(dragProgress) * 0.3;
+        }
+      });
+      
+      if (e.type.includes('touch')) {
+        e.preventDefault();
+      }
+    }
+
+    function handleEnd(e) {
+      if (!isDragging) return;
+      
+      const diff = currentX - startX;
+      
+      // Reset transforms
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.transform = '';
+        card.style.opacity = '';
+      });
+      
+      // Determine swipe direction
+      if (diff < -MIN_SWIPE && currentStep < steps.length - 1) {
+        goToStep(currentStep + 1);
+      } else if (diff > MIN_SWIPE && currentStep > 0) {
+        goToStep(currentStep - 1);
+      } else {
+        updateView(); // Snap back
+      }
+      
+      isDragging = false;
+      startX = 0;
+      currentX = 0;
+    }
+
+    function goToStep(index) {
+      currentStep = index;
+      updateView();
+    }
+
+    function updateView() {
+      const cards = document.querySelectorAll('.card');
+      const dots = document.querySelectorAll('.dot');
+      
+      cards.forEach((card, index) => {
+        card.className = `card card-${index + 1}`;
+        
+        const diff = index - currentStep;
+        
+        if (diff === 0) {
+          card.classList.add('active');
+        } else if (diff === 1) {
+          card.classList.add('next');
+        } else if (diff === -1) {
+          card.classList.add('prev');
+        } else if (diff >= 2) {
+          card.classList.add('far-next');
+        } else if (diff <= -2) {
+          card.classList.add('far-prev');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentStep);
+      });
+      
+      // Update progress bar
+      const progressFill = document.getElementById('progressFill');
+      const progress = ((currentStep + 1) / steps.length) * 100;
+      progressFill.style.width = `${progress}%`;
+      
+      // Update step indicator
+      document.getElementById('stepIndicator').textContent = `Step ${currentStep + 1} of ${steps.length}`;
+      
+      // Update navigation buttons
+      document.getElementById('prevBtn').classList.toggle('disabled', currentStep === 0);
+      document.getElementById('nextBtn').classList.toggle('disabled', currentStep === steps.length - 1);
+    }
+
+    // Ripple effect function
+    function createRipple(event, element) {
+      const ripple = document.createElement('span');
+      const rect = element.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = event.clientX - rect.left - size / 2;
+      const y = event.clientY - rect.top - size / 2;
+      
+      ripple.className = 'ripple';
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      
+      element.appendChild(ripple);
+      
+      setTimeout(() => ripple.remove(), 600);
+    }
+
+    // Initialize
+    init();
+  </script>
+</body>
+</html>

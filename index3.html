@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1CJJacob - Design & Development Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --off-white: #F7F7F5;
+      --pure-black: #000000;
+      --signature-blue: #003180;
+      --hover-blue: #0042B5;
+      --dark-grey: #2B2B2B;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 1.6;
+      color: var(--dark-grey);
+      background: var(--off-white);
+      overflow-x: hidden;
+      transition: background-color 0.55s ease-in-out, color 0.55s ease-in-out;
+    }
+    
+    body.dark-mode {
+      background: var(--pure-black);
+      color: #E8E8E8;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      transition: color 0.4s ease;
+    }
+    
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode h4,
+    body.dark-mode h5,
+    body.dark-mode h6 {
+      color: #F7F7F5;
+    }
+    
+    h1 { font-size: clamp(48px, 8vw, 110px); }
+    h2 { font-size: clamp(32px, 6vw, 64px); }
+    
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 96px);
+      max-width: 1300px;
+      height: 80px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      height: 64px;
+      backdrop-filter: blur(24px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .navbar.dark-bg {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .navbar.dark-bg .logo,
+    .navbar.dark-bg .nav-links a {
+      color: #F7F7F5;
+    }
+    
+    body.dark-mode .logo {
+      color: #F7F7F5;
+    }
+    
+    body.dark-mode .nav-links a {
+      color: #F7F7F5;
+      opacity: 0.8;
+    }
+    
+    body.dark-mode .nav-links a:hover {
+      opacity: 1;
+    }
+    
+    .navbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      padding: 0 32px;
+    }
+    
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.08em;
+      color: var(--pure-black);
+      text-decoration: none;
+      transition: letter-spacing 0.3s ease;
+    }
+    
+    .logo:hover { letter-spacing: 0.12em; }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 64px;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      font-size: 16px;
+      color: var(--dark-grey);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+    
+    .nav-links a:hover { opacity: 1; }
+    
+    .cta-btn {
+      padding: 14px 32px;
+      background: var(--signature-blue);
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .cta-btn:hover {
+      background: var(--hover-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 49, 128, 0.2);
+    }
+    
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 200px 0;
+      text-align: center;
+    }
+    
+    .hero-content {
+      opacity: 0;
+    }
+    
+    .hero-title { margin-bottom: 32px; }
+    
+    .subtext {
+      font-size: 20px;
+      max-width: 660px;
+      margin: 0 auto 64px;
+      opacity: 0.8;
+    }
+    
+    .hero-ctas {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+    }
+    
+    .btn-primary, .btn-secondary {
+      padding: 20px 48px;
+      font-size: 17px;
+      font-weight: 500;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: var(--signature-blue);
+      color: white;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background: var(--hover-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 49, 128, 0.25);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--signature-blue);
+      border: 2px solid var(--signature-blue);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--signature-blue);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    /* ABOUT */
+    .about {
+      padding: 160px 48px;
+      background: transparent;
+    }
+    
+    .about__container { max-width: 900px; margin: 0 auto; }
+    
+    .about__title {
+      font-size: 64px;
+      margin-bottom: 80px;
+      opacity: 0;
+    }
+    
+    .about__content {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 60px;
+      align-items: start;
+      opacity: 0;
+    }
+    
+    .about__image {
+      width: 280px;
+      height: 350px;
+      border-radius: 8px;
+      background: url('https://images.pexels.com/photos/5378700/pexels-photo-5378700.jpeg?auto=compress&cs=tinysrgb&w=600') center/cover;
+      border: 1px solid rgba(0, 49, 128, 0.15);
+      transition: border-color 0.4s ease;
+    }
+    
+    body.dark-mode .about__image {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .about__body {
+      font-size: 20px;
+      line-height: 1.7;
+    }
+    
+    .about__text { margin-bottom: 28px; }
+    
+    /* WORK */
+    .work-section {
+      padding: 160px 0;
+      background: transparent;
+    }
+    
+    .work-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    
+    .work-header {
+      margin-bottom: 80px;
+      opacity: 0;
+    }
+    
+    .work-header__title {
+      font-size: 56px;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+    }
+    
+    .work-header__intro {
+      font-size: 18px;
+      color: #666;
+      max-width: 520px;
+      transition: color 0.4s ease;
+    }
+    
+    body.dark-mode .work-header__intro {
+      color: #999;
+    }
+    
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 48px;
+    }
+    
+    .work-card {
+      position: relative;
+      background: #f5f5f5;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 16 / 10;
+      border: 1px solid #e0e0e0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+      opacity: 0;
+    }
+    
+    body.dark-mode .work-card {
+      background: #1a1a1a;
+      border-color: #333;
+    }
+    
+    .work-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+    
+    .work-card__image {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+    }
+    
+    .work-card:hover .work-card__image { transform: scale(1.05); }
+    
+    .work-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px;
+    }
+    
+    .work-card:hover .work-card__overlay { opacity: 1; }
+    
+    .work-card__content {
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .work-card:hover .work-card__content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .work-card__title {
+      font-size: 32px;
+      color: #F7F7F5;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    
+    .work-card__description {
+      font-size: 15px;
+      color: #E0E0E0;
+      margin-bottom: 20px;
+    }
+    
+    /* PROCESS */
+    .process {
+      padding: 160px 0 80px;
+      background: transparent;
+    }
+    
+    .process__header {
+      text-align: center;
+      margin-bottom: 30px;
+      opacity: 0;
+      padding: 0 48px;
+      transition: opacity 0.4s ease;
+    }
+    
+    .process__title {
+      font-size: 56px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    
+    .process__subtitle {
+      font-size: 18px;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+      transition: color 0.4s ease;
+    }
+    
+    body.dark-mode .process__subtitle {
+      color: #999;
+    }
+    
+    .process__sticky-wrapper {
+      position: relative;
+      height: auto;
+    }
+    
+    .process__content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: sticky;
+      top: 120px;
+      padding: 0 48px;
+      z-index: 10;
+      transition: opacity 0.4s ease;
+    }
+    
+    .process__content.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .process__steps-container {
+      perspective: 1000px;
+      height: 500px;
+      position: relative;
+    }
+    
+    .process__step {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0.2;
+      filter: blur(5px);
+      transform: translateY(100px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .process__step.active {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0px);
+      pointer-events: auto;
+      z-index: 10;
+    }
+    
+    .process__step.prev {
+      opacity: 0.2;
+      filter: blur(5px);
+      transform: translateY(-100px);
+    }
+    
+    .process__step-number {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--signature-blue);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    
+    .process__step-title {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+    
+    .process__step-text {
+      font-size: 17px;
+      color: #333;
+      line-height: 1.9;
+      transition: color 0.4s ease;
+      max-width: 600px;
+      font-weight: 500;
+    }
+    
+    body.dark-mode .process__step-text {
+      color: #E0E0E0;
+    }
+    
+
+    
+    .process__spacer {
+      height: 120vh;
+      position: relative;
+    }
+    
+    /* CONTACT */
+    #contact {
+      padding: 120px 0;
+      background: transparent;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 40px;
+    }
+    
+    .contact-content {
+      grid-column: 1 / 6;
+      opacity: 0;
+    }
+    
+    .contact-title h2 {
+      font-size: clamp(32px, 6vw, 56px);
+      margin-bottom: 24px;
+    }
+    
+    .contact-subtitle {
+      font-size: 18px;
+      color: #666;
+      line-height: 1.7;
+      transition: color 0.4s ease;
+    }
+    
+    body.dark-mode .contact-subtitle {
+      color: #999;
+    }
+    
+    .contact-form-wrapper {
+      grid-column: 7 / 13;
+      opacity: 0;
+    }
+    
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    
+    .form-group label {
+      display: block;
+      color: #999;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      transition: color 0.4s ease;
+    }
+    
+    body.dark-mode .form-group label {
+      color: #999;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: transparent;
+      border: 1px solid #333;
+      color: var(--dark-grey);
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      outline: none;
+      border-radius: 4px;
+    }
+    
+    body.dark-mode .form-group input,
+    body.dark-mode .form-group select,
+    body.dark-mode .form-group textarea {
+      color: #F7F7F5;
+      border-color: #555;
+    }
+    
+    body.dark-mode .form-group input::placeholder,
+    body.dark-mode .form-group textarea::placeholder {
+      color: #666;
+    }
+    
+    .form-group input { height: 56px; }
+    
+    .form-group textarea {
+      height: 140px;
+      resize: vertical;
+      min-height: 140px;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--signature-blue);
+      box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15);
+    }
+    
+    .submit-btn {
+      background: var(--signature-blue);
+      color: white;
+      border: none;
+      height: 56px;
+      padding: 0 48px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+    
+    .submit-btn:hover {
+      background: var(--hover-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0, 102, 255, 0.35);
+    }
+    
+    .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+    .submit-btn.success { background: #10b981; }
+    
+    /* FOOTER */
+    footer {
+      background: #F7F7F5;
+      border-top: 1px solid #E2E2DF;
+      padding: 80px 0 40px;
+      opacity: 0;
+      transition: background-color 0.55s ease-in-out, border-color 0.55s ease-in-out;
+    }
+    
+    body.dark-mode footer {
+      background: #0a0a0a;
+      border-top-color: #222;
+    }
+    
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 60px;
+      gap: 60px;
+    }
+    
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      margin-bottom: 12px;
+      color: #333;
+      transition: color 0.4s ease;
+    }
+    
+    body.dark-mode .footer-logo {
+      color: #F7F7F5;
+    }
+    
+    .footer-tagline {
+      color: #999;
+      font-size: 16px;
+      max-width: 400px;
+      transition: color 0.4s ease;
+    }
+    
+    body.dark-mode .footer-tagline {
+      color: #666;
+    }
+    
+    .footer-right {
+      display: flex;
+      gap: 100px;
+    }
+    
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    
+    .footer-nav a {
+      color: #333;
+      font-size: 15px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    body.dark-mode .footer-nav a {
+      color: #E8E8E8;
+    }
+    
+    .footer-nav a:hover { color: var(--signature-blue); }
+    
+    .footer-socials {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid #E2E2DF;
+      border-radius: 50%;
+      color: #333;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    body.dark-mode .social-icon {
+      border-color: #333;
+      color: #E8E8E8;
+    }
+    
+    .social-icon:hover {
+      border-color: var(--signature-blue);
+      color: var(--signature-blue);
+      transform: scale(1.08);
+    }
+    
+    .footer-bottom {
+      padding-top: 40px;
+      border-top: 1px solid #E2E2DF;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+      transition: border-color 0.4s ease, color 0.4s ease;
+    }
+    
+    body.dark-mode .footer-bottom {
+      border-top-color: #222;
+      color: #666;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .about__content { grid-template-columns: 1fr; }
+      .contact-content,
+      .contact-form-wrapper { grid-column: 1 / 13; }
+    }
+    
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      .navbar { width: calc(100% - 48px); }
+      .nav-links { gap: 24px; }
+      .nav-links li:not(:last-child) { display: none; }
+      .hero { padding: 140px 0 96px; }
+      .hero-ctas { flex-direction: column; width: 100%; max-width: 400px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .footer-grid { flex-direction: column; }
+      .footer-right { flex-direction: column; gap: 50px; }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="#home" class="logo">CJJACOB</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="cta-btn">Start Project</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">I design & build websites that feel as good as they look.</h1>
+        <p class="subtext">A one-person design & development studio focused on clean visuals, smooth interactions, and websites that help your business grow.</p>
+        <div class="hero-ctas">
+          <a href="#work" class="btn-primary">See My Work</a>
+          <a href="#contact" class="btn-secondary">Start a Project</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="about__container">
+      <h2 class="about__title">A designer who codes. A developer who cares about design.</h2>
+      <div class="about__content">
+        <div class="about__image"></div>
+        <div class="about__body">
+          <p class="about__text">I help brands turn complicated ideas into simple, beautiful, high-performing websites. No bloated team. No handoff chaos. No generic templates. Just a clear process, thoughtful design, and high-quality development — handled end-to-end by one person who actually listens.</p>
+          <p class="about__text">My approach is simple: Make the entire experience easy, enjoyable, and genuinely exciting. If you want a site that feels clean, fast, and true to your brand… you're in the right place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- WORK -->
+  <section id="work" class="work-section">
+    <div class="work-container">
+      <div class="work-header">
+        <h2 class="work-header__title">Featured Work</h2>
+        <p class="work-header__intro">A curated selection of projects crafted with clarity, identity, and performance in mind.</p>
+      </div>
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="work-card__image" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop');"></div>
+          <div class="work-card__overlay">
+            <div class="work-card__content">
+              <h3 class="work-card__title">ArcBright Consulting</h3>
+              <p class="work-card__description">Professional, minimal experience with subtle depth and refined interaction.</p>
+            </div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card__image" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop');"></div>
+          <div class="work-card__overlay">
+            <div class="work-card__content">
+              <h3 class="work-card__title">Peak Fitness Lab</h3>
+              <p class="work-card__description">High-energy landing page optimized for conversions with bold typography.</p>
+            </div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card__image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop');"></div>
+          <div class="work-card__overlay">
+            <div class="work-card__content">
+              <h3 class="work-card__title">Zenith Agency</h3>
+              <p class="work-card__description">Brand transformation and digital presence overhaul for a creative powerhouse.</p>
+            </div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card__image" style="background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop');"></div>
+          <div class="work-card__overlay">
+            <div class="work-card__content">
+              <h3 class="work-card__title">Luxe Living</h3>
+              <p class="work-card__description">Premium real estate platform with immersive property showcases.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="process">
+    <div class="process__sticky-wrapper">
+      <div class="process__content" id="processContent">
+        <div class="process__header">
+          <h2 class="process__title">How I Work</h2>
+          <p class="process__subtitle">A streamlined, collaborative process designed for clarity, creativity, and measurable results.</p>
+        </div>
+
+        <div class="process__steps-container" id="stepsContainer">
+          <article class="process__step active">
+            <div class="process__step-number">Step 01</div>
+            <h3 class="process__step-title">Discovery & Research</h3>
+            <p class="process__step-text">We begin with a comprehensive exploration of your vision, target audience, and competitive landscape. I gather insights through research, conversations, and analysis to build a strategic foundation.</p>
+          </article>
+          <article class="process__step">
+            <div class="process__step-number">Step 02</div>
+            <h3 class="process__step-title">Strategy & Planning</h3>
+            <p class="process__step-text">With research in hand, we develop a comprehensive strategy. This includes user journey mapping, information architecture, content structure, and technical requirements aligned with your business objectives.</p>
+          </article>
+          <article class="process__step">
+            <div class="process__step-number">Step 03</div>
+            <h3 class="process__step-title">Design & Prototyping</h3>
+            <p class="process__step-text">Your brand comes to life through thoughtful design. I create wireframes, high-fidelity mockups, and interactive prototypes that demonstrate the final experience with purposeful refinement.</p>
+          </article>
+          <article class="process__step">
+            <div class="process__step-number">Step 04</div>
+            <h3 class="process__step-title">Development & Build</h3>
+            <p class="process__step-text">Using modern technologies and best practices, I hand-code your site with performance and accessibility as priorities. Every element is tested across devices and optimized for speed.</p>
+          </article>
+          <article class="process__step">
+            <div class="process__step-number">Step 05</div>
+            <h3 class="process__step-title">Launch & Optimization</h3>
+            <p class="process__step-text">Your site launches fully optimized for search engines, performance, and user experience. Post-launch, we monitor analytics and make data-driven improvements to maximize results.</p>
+          </article>
+        </div>
+      </div>
+      <div class="process__spacer"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-content">
+          <div class="contact-title">
+            <h2>Let's Build Something You'll Be Proud Of</h2>
+          </div>
+          <p class="contact-subtitle">Tell me a bit about your project — I'll get back to you within 24 hours with ideas and next steps.</p>
+        </div>
+        <div class="contact-form-wrapper">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+            </div>
+            <div class="form-group">
+              <label for="projectType">Project Type</label>
+              <select id="projectType" name="projectType" required>
+                <option value="">Select a project type</option>
+                <option value="website">Website Design & Development</option>
+                <option value="branding">Branding & Identity</option>
+                <option value="ecommerce">E-commerce Solution</option>
+                <option value="app">Mobile/Web Application</option>
+                <option value="consultation">Consultation</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-left">
+          <div class="footer-logo">CJJacob</div>
+          <p class="footer-tagline">Crafted Websites. Built With Intention. Designed for Results.</p>
+        </div>
+        <div class="footer-right">
+          <nav class="footer-nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#process">Process</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <div class="footer-socials">
+            <a href="https://linkedin.com" class="social-icon" aria-label="LinkedIn">in</a>
+            <a href="https://twitter.com" class="social-icon" aria-label="Twitter">tw</a>
+            <a href="https://instagram.com" class="social-icon" aria-label="Instagram">ig</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 CJJacob Designs. All rights reserved. Crafted with intention.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // NAVBAR SCROLL
+    ScrollTrigger.create({
+      start: 'top -40',
+      onEnter: () => document.querySelector('.navbar').classList.add('scrolled'),
+      onLeaveBack: () => document.querySelector('.navbar').classList.remove('scrolled')
+    });
+
+    // GLOBAL BACKGROUND COLOR CHANGES
+    const body = document.body;
+    const navbar = document.querySelector('.navbar');
+
+    // Home section - OFF-WHITE (default, no trigger needed at start)
+    
+    // About section - BLACK
+    ScrollTrigger.create({
+      trigger: '#about',
+      start: 'top 150px',
+      end: 'bottom 150px',
+      onEnter: () => {
+        body.classList.add('dark-mode');
+        navbar.classList.add('dark-bg');
+      },
+      onLeaveBack: () => {
+        body.classList.remove('dark-mode');
+        navbar.classList.remove('dark-bg');
+      }
+    });
+
+    // Work section - OFF-WHITE
+    ScrollTrigger.create({
+      trigger: '#work',
+      start: 'top 150px',
+      end: 'bottom 150px',
+      onEnter: () => {
+        body.classList.remove('dark-mode');
+        navbar.classList.remove('dark-bg');
+      },
+      onLeaveBack: () => {
+        body.classList.add('dark-mode');
+        navbar.classList.add('dark-bg');
+      }
+    });
+
+    // Process section - OFF-WHITE (stays same as Work, so only handle leave)
+    ScrollTrigger.create({
+      trigger: '#process',
+      start: 'top 150px',
+      end: 'bottom 150px',
+      onLeaveBack: () => {
+        body.classList.remove('dark-mode');
+        navbar.classList.remove('dark-bg');
+      }
+    });
+
+    // Contact section - BLACK
+    ScrollTrigger.create({
+      trigger: '#contact',
+      start: 'top 200px',
+      end: 'bottom bottom',
+      onEnter: () => {
+        body.classList.add('dark-mode');
+        navbar.classList.add('dark-bg');
+      },
+      onLeaveBack: () => {
+        body.classList.remove('dark-mode');
+        navbar.classList.remove('dark-bg');
+      }
+    });
+
+    // HERO ANIMATION
+    gsap.to('.hero-content', {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: 'power3.out',
+      delay: 0.3
+    });
+
+    // ABOUT SECTION
+    gsap.to('.about__title', {
+      scrollTrigger: {
+        trigger: '.about',
+        start: 'top 60%'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+
+    gsap.to('.about__content', {
+      scrollTrigger: {
+        trigger: '.about',
+        start: 'top 50%'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 0.2,
+      ease: 'power3.out'
+    });
+
+    // WORK SECTION
+    gsap.to('.work-header', {
+      scrollTrigger: {
+        trigger: '.work-section',
+        start: 'top 60%'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+
+    gsap.utils.toArray('.work-card').forEach((card, i) => {
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%'
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: i * 0.1,
+        ease: 'power3.out'
+      });
+    });
+
+    // PROCESS SECTION - STICKY SCROLL WITH BLUR
+    const processContent = document.getElementById('processContent');
+    const processHeader = document.querySelector('.process__header');
+    
+    gsap.to('.process__header', {
+      scrollTrigger: {
+        trigger: '.process',
+        start: 'top 60%',
+        end: 'top 30%'
+      },
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+
+    ScrollTrigger.create({
+      trigger: '#contact',
+      start: 'top 600px',
+      onEnter: () => {
+        gsap.to(processContent, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power2.in'
+        });
+      },
+      onLeaveBack: () => {
+        gsap.to(processContent, {
+          opacity: 1,
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+      }
+    });
+
+    // Process sticky scroll functionality
+    const stepsContainer = document.getElementById('stepsContainer');
+    const steps = document.querySelectorAll('.process__step');
+    let currentStep = 0;
+
+    ScrollTrigger.create({
+      trigger: '.process__sticky-wrapper',
+      start: 'top top',
+      end: 'bottom bottom',
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const totalSteps = steps.length - 1;
+        const stepProgress = progress * totalSteps;
+        const newStep = Math.round(stepProgress);
+
+        if (newStep !== currentStep && newStep < steps.length) {
+          currentStep = newStep;
+          
+          steps.forEach((step, index) => {
+            step.classList.remove('active', 'prev');
+            
+            if (index === currentStep) {
+              step.classList.add('active');
+            } else if (index < currentStep) {
+              step.classList.add('prev');
+            }
+          });
+        }
+      }
+    });
+
+    // CONTACT SECTION
+    gsap.to('.contact-content', {
+      scrollTrigger: {
+        trigger: '#contact',
+        start: 'top 60%'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+
+    gsap.to('.contact-form-wrapper', {
+      scrollTrigger: {
+        trigger: '#contact',
+        start: 'top 55%'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 0.2,
+      ease: 'power3.out'
+    });
+
+    // FOOTER
+    gsap.to('footer', {
+      scrollTrigger: {
+        trigger: 'footer',
+        start: 'top 80%'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+
+    // FORM HANDLING
+    const form = document.getElementById('contactForm');
+    const submitBtn = form.querySelector('.submit-btn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const originalText = submitBtn.textContent;
+      
+      try {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        submitBtn.textContent = 'Message Sent!';
+        submitBtn.classList.add('success');
+        
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.classList.remove('success');
+          submitBtn.disabled = false;
+          form.reset();
+        }, 2000);
+      } catch (error) {
+        submitBtn.textContent = 'Error. Try Again';
+        submitBtn.disabled = false;
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+        }, 2000);
+      }
+    });
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
